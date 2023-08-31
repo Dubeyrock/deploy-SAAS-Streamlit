@@ -1,14 +1,24 @@
 import streamlit as st
 from st_paywall import add_auth
 
+# Simulated require_auth function
+def require_auth():
+    return True
+
+# Simulated add_auth function
+def add_auth(required=True):
+    if required:
+        if not require_auth():
+            st.error("Authentication required.")
+            st.stop()
 
 st.set_page_config(layout="wide")
 st.title("My Cool SaaS! 🚀")
 
+# Simulated add_auth function call
 add_auth(required=True)
 
-# ONLY AFTER THE AUTHENTICATION + SUBSCRIPTION, THE USER WILL SEE THIS ⤵
-# The email and subscription status is stored in session state.
-st.write(f"Subscription Status: {st.session_state.user_subscribed}")
-st.write("🎉 Yay! You're all set and subscribed! 🎉")
-st.write(f'By the way, your email is: {st.session_state.email}')
+# If authentication is successful, the user will see this
+st.write("🎉 Yay! You're authenticated! 🎉")
+
+# Additional content can go here
